@@ -1,15 +1,14 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
   border: none;
   color: white;
-  padding: 16px 32px;
+  padding: 10px 20px;
   text-align: center;
   font-size: 16px;
   transition-duration: 0.4s;
   cursor: pointer;
-  background-color: red;
+  background-color: gray;
   color: white;
   border-radius: 10px;
 `
