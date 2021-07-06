@@ -1,16 +1,15 @@
 
 
-function pokedexApi(poke, setPoke, name, setName) {
-
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=$%7Boffset%7D')
+function pokedexApi(oriUrl, setNextUrl, nextUrl, poke, setPoke, name, setName) {
+    fetch(oriUrl)
         .then(function (response) {
             return response.json()
         }).then(function (data) {
+            console.log('data :', data)
             setPoke([...poke, data.count])
-            setName(...name, data.results)
+            setNextUrl(data.next)
+            setName(data.results)
         })
-
 }
-
 
 export default pokedexApi;

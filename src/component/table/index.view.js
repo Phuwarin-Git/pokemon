@@ -9,10 +9,11 @@ th{
 }
 td {
   padding: 8px;
-  text-align: center;
+  border: 1px solid #ddd;
+  
 }
 tr{
-  text-align: center;
+  
 }
 
 `
