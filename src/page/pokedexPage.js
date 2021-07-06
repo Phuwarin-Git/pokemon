@@ -6,6 +6,7 @@ import Button from '../component/button/index.view';
 import Table from '../component/table/index.view';
 import IMG from '../component/picture/index.view';
 
+
 const PokedexPage = () => {
     let ori = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=$%7Boffset%7D'
     const [poke, setPoke] = useState([])
@@ -56,7 +57,8 @@ const PokedexPage = () => {
                     })}
                 </td>
                 <td>{details?.map((item) => {
-                    let pic = item.sprites.other.dream_world.front_default
+
+                    let pic = item.sprites.versions["generation-v"]?.["black-white"]?.animated.front_default
                     return <div><tr><IMG src={pic} /></tr></div>
                 })}</td>
                 <td>{details?.map((item) => {
@@ -67,9 +69,8 @@ const PokedexPage = () => {
                 })}</td>
                 <td>{details?.map((item) => {
                     return <div>
-                        {/* item.sprites.other.dream_world.front_default */}
                         <tr>
-                            <p><CardModal pic={item.sprites.versions["generation-v"]?.["black-white"]?.animated.front_default}
+                            <p><CardModal pic={item.sprites.other["official-artwork"]?.front_default}
                                 weight={item.weight}
                                 height={item.height}
                                 name={item.name}

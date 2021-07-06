@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import IMG from '../picture/index.view';
 import CloseButton from '../button/closeButton';
 import Button from '../button/index.view'
+import Details from '../picture/details';
 
 const customStyles = {
     content: {
@@ -47,7 +47,7 @@ const CardModal = ({ pic, weight, height, name, }) => {
                 <CloseButton onClick={closeModal}>X</CloseButton>
                 <div>
                     <center>
-                        <IMG src={pic} />
+                        <Details src={pic} />
                         <p>Name : {name}</p>
                         <p>Weight : {weight}</p>
                         <p>Height : {height}</p>
