@@ -14,10 +14,12 @@ const PokedexPage = () => {
     const [details, setDetails] = useState([])
     const [oriUrl, setOriUrl] = useState(ori)
     const [nextUrl, setNextUrl] = useState([])
+    const [backUrl, setBackUrl] = useState([])
 
     useEffect(() => {
-        pokedexApi(oriUrl, setNextUrl, nextUrl, poke, setPoke, name, setName);
-        console.log('Effect :', oriUrl)
+        details.splice(0, 10)
+        pokedexApi(oriUrl, setNextUrl, setBackUrl, setPoke, setName);
+
     }, [oriUrl])
 
     useEffect(() => {
@@ -27,13 +29,13 @@ const PokedexPage = () => {
         })
     }, [name])
 
-    const changePage = ((next) => {
-        setOriUrl(next)
-        console.log('Next :', next)
-        console.log('Ori :', oriUrl)
-    })
+    useEffect(() => {
+        console.log('Detaisl :', details)
+    }, [details])
 
-    console.log('Name :', name)
+    const changePage = ((page) => {
+        setOriUrl(page)
+    })
 
     return (
         <div>
@@ -48,9 +50,6 @@ const PokedexPage = () => {
                 </tr>
                 <td>
                     {name?.map((item) => {
-                        console.log('item :', item)
-                        console.log('Mao URL :', item.url)
-                        console.log("name.map :", item.name)
                         return <div key={item.url}>
                             <tr><p>{item.name}</p></tr>
                         </div>
@@ -80,7 +79,9 @@ const PokedexPage = () => {
                 })}</td>
 
             </Table>
-            <Button onClick={() => changePage(nextUrl)}>{">>>"}</Button><br />
+            <Button onClick={() => changePage(backUrl)}>{"<<<"}</Button>
+            {" "}
+            <Button onClick={() => changePage(nextUrl)}>{">>>"}</Button> <br />
             Sum Pokemon : {poke}
         </div>
     )
