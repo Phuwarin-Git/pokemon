@@ -13,6 +13,7 @@ const Button = styled.button`
   background-color: #949494;
   color: white;
   border-radius: 10px;
+  
 `
 
 export default Button;
