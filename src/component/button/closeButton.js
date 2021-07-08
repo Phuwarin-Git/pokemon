@@ -3,13 +3,13 @@ import styled from 'styled-components';
 const CloseButton = styled.button`
     background-color: red;
     color: white;
-    margin-top: -1%;
-    margin-left: 85%;
-    border-radius: 15px;
-    padding: 10px 20px;
+    margin-top: -20px;
+    margin-left: 92%;
+    border-radius: 5px;
+    padding: 1.5px 8px;
     text-align: cneter;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 15px;
     border: none;
 `
 

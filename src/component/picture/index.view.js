@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const IMG = styled.img`
-height:95px;
+height:75px;
 
 `
 

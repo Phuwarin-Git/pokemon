@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import IMG from '../picture/index.view';
+import Name from './name.view';
 import CloseButton from '../button/closeButton';
 import Button from '../button/index.view'
 import Details from '../picture/details';
@@ -19,15 +19,10 @@ const customStyles = {
 };
 
 const CardModal = ({ pic, weight, height, name, }) => {
-    let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
     function openModal() {
         setIsOpen(true);
-    }
-
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
     }
 
     function closeModal() {
@@ -39,7 +34,6 @@ const CardModal = ({ pic, weight, height, name, }) => {
             <Button onClick={openModal}>Details</Button>
             <Modal
                 isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="modal"
@@ -47,8 +41,8 @@ const CardModal = ({ pic, weight, height, name, }) => {
                 <CloseButton onClick={closeModal}>X</CloseButton>
                 <div>
                     <center>
+                        <Name>{name}</Name>
                         <Details src={pic} />
-                        <p>Name : {name}</p>
                         <p>Weight : {weight}</p>
                         <p>Height : {height}</p>
                     </center>
