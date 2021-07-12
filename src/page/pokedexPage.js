@@ -28,17 +28,6 @@ const PokedexPage = () => {
     console.log("pageI :", pageI);
   }, [pageI]);
 
-  //   function UsePicture(item) {
-  //     if (page >= 650) {
-  //       return setPicture(
-  //         item.sprites.versions["generation-v"]?.["black-white"]?.animated
-  //           .front_default
-  //       );
-  //     } else {
-  //       return setPicture(item.sprites.front_default);
-  //     }
-  //   }
-
   const NextPage = () => {
     if (page >= 1080) {
       if (page === 1110) {
