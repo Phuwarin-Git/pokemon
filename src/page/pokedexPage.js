@@ -10,17 +10,68 @@ const PokedexPage = () => {
   const [details, setDetails] = useState([]);
   const [count, setCount] = useState([]);
   const [page, setPage] = useState(0);
+
+  let firstList = [2, 3, 4, 5, 6];
+  let lastList = [107, 108, 109, 110, 111];
+  const [pageI, setPageI] = useState(firstList);
+  //   const [picture, setPicture] = useState();
   let ori = "https://pokeapi.co/api/v2/pokemon?offset=" + page + "&limit=10";
   useEffect(() => {
     pokedexApi(ori, setDetails, setCount);
   }, [ori]);
 
+  useEffect(() => {
+    console.log("page :", page);
+  }, [page]);
+
+  useEffect(() => {
+    console.log("pageI :", pageI);
+  }, [pageI]);
+
+  //   function UsePicture(item) {
+  //     if (page >= 650) {
+  //       return setPicture(
+  //         item.sprites.versions["generation-v"]?.["black-white"]?.animated
+  //           .front_default
+  //       );
+  //     } else {
+  //       return setPicture(item.sprites.front_default);
+  //     }
+  //   }
+
   const NextPage = () => {
-    setPage(page + 10);
+    if (page >= 1080) {
+      if (page === 1110) {
+        return setPageI(lastList);
+      }
+      setPage(page + 10);
+      return setPageI(lastList);
+    } else if (page < 30) {
+      setPage(page + 10);
+      return setPageI(firstList);
+    } else {
+      setPage(page + 10);
+      const a = pageI.map((item) => {
+        return item + 1;
+      });
+      setPageI(a);
+    }
   };
 
   const BackPage = () => {
-    setPage(page - 10);
+    if (page > 1080) {
+      setPage(page - 10);
+      return setPageI(lastList);
+    } else if (page <= 30) {
+      setPage(page - 10);
+      return setPageI(firstList);
+    } else {
+      setPage(page - 10);
+      const a = pageI.map((item) => {
+        return item - 1;
+      });
+      setPageI(a);
+    }
   };
 
   function CheckNull() {
@@ -30,10 +81,44 @@ const PokedexPage = () => {
       return false;
     }
   }
-  console.log("data :", details);
+
+  function ChangePage(i) {
+    setPage((i - 1) * 10);
+    console.log("i :", i);
+    if (i <= 4) {
+      return setPageI(firstList);
+    } else if (i > 4) {
+      if (i < pageI[1]) {
+        const a = pageI.map((item) => {
+          return item - 2;
+        });
+        setPageI(a);
+      } else if (i < pageI[2]) {
+        const a = pageI.map((item) => {
+          return item - 1;
+        });
+        setPageI(a);
+      } else if (i === pageI[2]) {
+        console.log("Current page!!!!", [pageI[2]]);
+      } else if (i >= 109) {
+        setPageI(lastList);
+      } else if (i > pageI[3]) {
+        const a = pageI.map((item) => {
+          return item + 2;
+        });
+        setPageI(a);
+      } else if (i > pageI[2]) {
+        const a = pageI.map((item) => {
+          return item + 1;
+        });
+        setPageI(a);
+      }
+    }
+  }
+
   return (
     <div>
-      {console.log("rerender :")}
+      {/* {console.log("rerender :")} */}
       <h1>Pokedex</h1>
       <Table style={{ borderRadius: 20 }} striped bordered hover variant="dark">
         <thead>
@@ -81,45 +166,58 @@ const PokedexPage = () => {
       </Table>
       {CheckNull(page) ? (
         <div>
-          <center>
-            <Pagination>
-              <Pagination.First disabled />
-              <Pagination.Prev disabled />
-              <Pagination.Item active>{1}</Pagination.Item>
-              <Pagination.Item>{2}</Pagination.Item>
-              <Pagination.Item>{3}</Pagination.Item>
-              <Pagination.Item>{4}</Pagination.Item>
-              <Pagination.Item>{5}</Pagination.Item>
-              <Pagination.Item>{6}</Pagination.Item>
+          <Pagination style={{ marginLeft: 50 }}>
+            <Pagination.First disabled />
+            <Pagination.Prev disabled />
+            <Pagination.Item onClick={() => ChangePage(1)}>{1}</Pagination.Item>
+            {pageI.map((item) => {
+              return (
+                <Pagination.Item
+                  key={item.index}
+                  onClick={() => ChangePage(item)}
+                >
+                  {item}
+                </Pagination.Item>
+              );
+            })}
 
-              <Pagination.Ellipsis />
-              <Pagination.Item>{112}</Pagination.Item>
-              <Pagination.Next onClick={() => NextPage()} />
-              <Pagination.Last />
-            </Pagination>
-            <p>Sum of Pokemon : {count}</p>
-          </center>
+            <Pagination.Ellipsis />
+            <Pagination.Item onClick={() => ChangePage(112)}>
+              {112}
+            </Pagination.Item>
+            <Pagination.Next onClick={() => NextPage()} />
+            <Pagination.Last onClick={() => ChangePage(112)} />
+          </Pagination>
+          <p>Sum of Pokemon : {count}</p>
         </div>
       ) : (
         <div>
           <Pagination>
-            <Pagination.First />
+            <Pagination.First onClick={() => ChangePage(1)} />
             <Pagination.Prev onClick={() => BackPage()} />
-            <Pagination.Item>{1}</Pagination.Item>
+            <Pagination.Item onClick={() => ChangePage(1)}>{1}</Pagination.Item>
             <Pagination.Ellipsis />
 
-            <Pagination.Item>{10}</Pagination.Item>
-            <Pagination.Item>{11}</Pagination.Item>
-            <Pagination.Item active>{12}</Pagination.Item>
-            <Pagination.Item>{13}</Pagination.Item>
-            <Pagination.Item>{14}</Pagination.Item>
+            {pageI.map((item) => {
+              return (
+                <Pagination.Item
+                  key={item.index}
+                  onClick={() => ChangePage(item)}
+                >
+                  {item}
+                </Pagination.Item>
+              );
+            })}
 
             <Pagination.Ellipsis />
-            <Pagination.Item>{112}</Pagination.Item>
+            <Pagination.Item onClick={() => ChangePage(112)}>
+              {112}
+            </Pagination.Item>
             <Pagination.Next onClick={() => NextPage()} />
-            <Pagination.Last />
+            <Pagination.Last onClick={() => ChangePage(112)} />
           </Pagination>
           <p>Sum of Pokemon: {count}</p>
+          <p>Current Page : {page / 10 + 1}</p>
         </div>
       )}
     </div>
