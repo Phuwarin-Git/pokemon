@@ -95,6 +95,22 @@ const PokedexPage = () => {
     }
   }
 
+  function EllipsisNextChange() {
+    setPage(page + 100);
+    const a = pageI.map((item) => {
+      return item + 10;
+    });
+    return setPageI(a);
+  }
+
+  function EllipsisPreviousChange() {
+    setPage(page - 100);
+    const a = pageI.map((item) => {
+      return item - 10;
+    });
+    return setPageI(a);
+  }
+
   return (
     <div>
       {console.log("rerender :")}
@@ -163,7 +179,7 @@ const PokedexPage = () => {
               );
             })}
 
-            <Pagination.Ellipsis />
+            <Pagination.Ellipsis onClick={() => EllipsisNextChange()} />
             <Pagination.Item onClick={() => ChangePage(112)}>
               {112}
             </Pagination.Item>
@@ -178,8 +194,10 @@ const PokedexPage = () => {
             <Pagination.First onClick={() => ChangePage(1)} />
             <Pagination.Prev onClick={() => BackPage()} />
             <Pagination.Item onClick={() => ChangePage(1)}>{1}</Pagination.Item>
-            <Pagination.Ellipsis />
-
+            <Pagination.Ellipsis
+              disabled={page / 10 + 1 <= 13}
+              onClick={() => EllipsisPreviousChange()}
+            />
             {pageI.map((item) => {
               return (
                 <Pagination.Item
@@ -191,8 +209,10 @@ const PokedexPage = () => {
                 </Pagination.Item>
               );
             })}
-
-            <Pagination.Ellipsis />
+            <Pagination.Ellipsis
+              disabled={page / 10 + 1 >= 100}
+              onClick={() => EllipsisNextChange()}
+            />
             <Pagination.Item
               active={page / 10 + 1 === 112}
               onClick={() => ChangePage(112)}
@@ -209,7 +229,6 @@ const PokedexPage = () => {
             />
           </Pagination>
           <p>Sum of Pokemon: {count}</p>
-          {/* <p>Current Page : {page / 10 + 1}</p> */}
         </div>
       )}
     </div>
