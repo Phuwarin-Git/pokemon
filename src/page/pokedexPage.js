@@ -14,19 +14,10 @@ const PokedexPage = () => {
   let firstList = [2, 3, 4, 5, 6];
   let lastList = [107, 108, 109, 110, 111];
   const [pageI, setPageI] = useState(firstList);
-  //   const [picture, setPicture] = useState();
   let ori = "https://pokeapi.co/api/v2/pokemon?offset=" + page + "&limit=10";
   useEffect(() => {
     pokedexApi(ori, setDetails, setCount);
   }, [ori]);
-
-  useEffect(() => {
-    console.log("page :", page);
-  }, [page]);
-
-  useEffect(() => {
-    console.log("pageI :", pageI);
-  }, [pageI]);
 
   const NextPage = () => {
     if (page >= 1080) {
@@ -73,7 +64,6 @@ const PokedexPage = () => {
 
   function ChangePage(i) {
     setPage((i - 1) * 10);
-    console.log("i :", i);
     if (i <= 4) {
       return setPageI(firstList);
     } else if (i > 4) {
@@ -107,7 +97,7 @@ const PokedexPage = () => {
 
   return (
     <div>
-      {/* {console.log("rerender :")} */}
+      {console.log("rerender :")}
       <h1>Pokedex</h1>
       <Table style={{ borderRadius: 20 }} striped bordered hover variant="dark">
         <thead>
@@ -158,7 +148,10 @@ const PokedexPage = () => {
           <Pagination style={{ marginLeft: 50 }}>
             <Pagination.First disabled />
             <Pagination.Prev disabled />
-            <Pagination.Item onClick={() => ChangePage(1)}>{1}</Pagination.Item>
+            <Pagination.Item active onClick={() => ChangePage(1)}>
+              {1}
+            </Pagination.Item>
+
             {pageI.map((item) => {
               return (
                 <Pagination.Item
@@ -190,7 +183,8 @@ const PokedexPage = () => {
             {pageI.map((item) => {
               return (
                 <Pagination.Item
-                  key={item.index}
+                  key={item}
+                  active={item === page / 10 + 1}
                   onClick={() => ChangePage(item)}
                 >
                   {item}
@@ -199,14 +193,23 @@ const PokedexPage = () => {
             })}
 
             <Pagination.Ellipsis />
-            <Pagination.Item onClick={() => ChangePage(112)}>
+            <Pagination.Item
+              active={page / 10 + 1 === 112}
+              onClick={() => ChangePage(112)}
+            >
               {112}
             </Pagination.Item>
-            <Pagination.Next onClick={() => NextPage()} />
-            <Pagination.Last onClick={() => ChangePage(112)} />
+            <Pagination.Next
+              disabled={page / 10 + 1 === 112}
+              onClick={() => NextPage()}
+            />
+            <Pagination.Last
+              disabled={page / 10 + 1 === 112}
+              onClick={() => ChangePage(112)}
+            />
           </Pagination>
           <p>Sum of Pokemon: {count}</p>
-          <p>Current Page : {page / 10 + 1}</p>
+          {/* <p>Current Page : {page / 10 + 1}</p> */}
         </div>
       )}
     </div>
