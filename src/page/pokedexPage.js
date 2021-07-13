@@ -38,7 +38,7 @@ const PokedexPage = () => {
     }
   };
 
-  const BackPage = () => {
+  const PreviousPage = () => {
     if (page > 1080) {
       setPage(page - 10);
       return setPageI(lastList);
@@ -59,6 +59,14 @@ const PokedexPage = () => {
       return true;
     } else {
       return false;
+    }
+  }
+
+  function CheckIMG() {
+    if (page / 10 + 1 >= 65) {
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -133,12 +141,16 @@ const PokedexPage = () => {
                   <p>{item.name}</p>
                 </td>
                 <td>
-                  <IMG
-                    src={
-                      item.sprites.versions["generation-v"]?.["black-white"]
-                        ?.animated.front_default
-                    }
-                  />
+                  {CheckIMG() ? (
+                    <IMG
+                      src={
+                        item.sprites.versions["generation-v"]?.["black-white"]
+                          ?.animated.front_default
+                      }
+                    />
+                  ) : (
+                    <IMG src={item.sprites.front_default} />
+                  )}
                 </td>
                 <td>
                   <p>{item.weight}</p>
@@ -189,10 +201,10 @@ const PokedexPage = () => {
           <p>Sum of Pokemon : {count}</p>
         </div>
       ) : (
-        <div>
+        <div style={{ marginLeft: 20 }}>
           <Pagination>
             <Pagination.First onClick={() => ChangePage(1)} />
-            <Pagination.Prev onClick={() => BackPage()} />
+            <Pagination.Prev onClick={() => PreviousPage()} />
             <Pagination.Item onClick={() => ChangePage(1)}>{1}</Pagination.Item>
             <Pagination.Ellipsis
               disabled={page / 10 + 1 <= 13}
