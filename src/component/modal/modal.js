@@ -1,23 +1,10 @@
 import React from "react";
-import Modal from "react-modal";
 import Name from "./name.view";
 import CloseButton from "../button/closeButton";
 import Button from "../button/index.view";
 import Details from "../picture/details";
-import "../../page/pokedexPage.view.css";
-
-// const customStyles = {
-//   content: {
-//     top: "50%",
-//     left: "50%",
-//     right: "auto",
-//     bottom: "auto",
-//     transform: "translate(-50%, -50%)",
-//     borderRadius: "19px",
-//     width: "45%",
-//     height: "60%",
-//   },
-// };
+import StyleModal from "./index.view";
+import "../../page/pokedexPageRes.view.css";
 
 const CardModal = ({ pic, weight, height, name }) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -35,11 +22,9 @@ const CardModal = ({ pic, weight, height, name }) => {
       <Button className="butRes" onClick={openModal}>
         Details
       </Button>
-      <Modal
-        className="modalRes"
+      <StyleModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        // style={customStyles}
         contentLabel="modal"
       >
         <CloseButton onClick={closeModal}>X</CloseButton>
@@ -51,7 +36,7 @@ const CardModal = ({ pic, weight, height, name }) => {
             <p>Height : {height}</p>
           </center>
         </div>
-      </Modal>
+      </StyleModal>
     </div>
   );
 };

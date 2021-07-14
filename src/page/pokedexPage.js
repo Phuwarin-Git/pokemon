@@ -5,7 +5,7 @@ import IMG from "../component/picture/index.view";
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./pokedexPage.view.css";
+import "./pokedexPageRes.view.css";
 const PokedexPage = () => {
   const [details, setDetails] = useState([]);
   const [count, setCount] = useState([]);
@@ -120,7 +120,7 @@ const PokedexPage = () => {
   }
 
   return (
-    <div>
+    <div className="PaddingDiv">
       {console.log("rerender :")}
       <h1>Pokedex</h1>
 
@@ -180,7 +180,7 @@ const PokedexPage = () => {
         </tbody>
       </Table>
       {CheckNull(page) ? (
-        <div>
+        <div className="pagingDiv">
           <Pagination>
             <Pagination.First className="paging" disabled />
             <Pagination.Prev className="paging" disabled />
@@ -191,7 +191,7 @@ const PokedexPage = () => {
             >
               {1}
             </Pagination.Item>
-
+            <Pagination.Ellipsis className="paging" disabled />
             {pageI.map((item) => {
               return (
                 <Pagination.Item
@@ -217,10 +217,9 @@ const PokedexPage = () => {
               onClick={() => ChangePage(112)}
             />
           </Pagination>
-          <p>Sum of Pokemon : {count}</p>
         </div>
       ) : (
-        <div>
+        <div className="pagingDiv">
           <Pagination>
             <Pagination.First
               className="paging"
@@ -273,7 +272,6 @@ const PokedexPage = () => {
               onClick={() => ChangePage(112)}
             />
           </Pagination>
-          <p>Sum of Pokemon: {count}</p>
         </div>
       )}
     </div>

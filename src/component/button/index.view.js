@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Button = styled.button`
   border: none;
@@ -13,7 +13,11 @@ const Button = styled.button`
   background-color: #69a2ff;
   color: white;
   border-radius: 10px;
-  
-`
+
+  @media only screen and (max-width: 415.9px) {
+    margin-left: -20px;
+    text-align: center;
+  }
+`;
 
 export default Button;
