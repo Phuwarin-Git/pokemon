@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./pokedexPageRes.view.css";
 const PokedexPage = () => {
   const [details, setDetails] = useState([]);
-  const [count, setCount] = useState([]);
   const [page, setPage] = useState(0);
 
   let firstList = [2, 3, 4, 5, 6];
@@ -16,7 +15,7 @@ const PokedexPage = () => {
   const [pageI, setPageI] = useState(firstList);
   let ori = "https://pokeapi.co/api/v2/pokemon?offset=" + page + "&limit=10";
   useEffect(() => {
-    pokedexApi(ori, setDetails, setCount);
+    pokedexApi(ori, setDetails);
   }, [ori]);
 
   const NextPage = () => {

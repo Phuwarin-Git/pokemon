@@ -1,10 +1,9 @@
-export const pokedexApi = async (oriUrl, setDetails, setCount) => {
+export const pokedexApi = async (oriUrl, setDetails) => {
   const fetchData = await fetch(oriUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      setCount(data.count);
       return data.results;
     });
 
