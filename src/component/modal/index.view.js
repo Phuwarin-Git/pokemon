@@ -9,37 +9,29 @@ const StyleModal = styled(Modal)`
   background-color: #fefefe;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  width: 40%;
-  height: 50%;
+  min-height: 20%;
 
-  @media only screen and (max-width: 376px) {
-    margin-top: 90%;
-    width: 70%;
-    height: 52%;
+  @media only screen and (max-width: 414px) {
+    margin-top: 80%;
+    min-width: 70%;
+    min-height: 52%;
   }
 
-  @media only screen and (max-width: 415.9px) {
-    margin-top: 70%;
-    width: 60%;
-    height: 52%;
+  @media only screen and (min-width: 768px) and (max-width: 1439px) {
+    margin-top: 60%;
+    width: 40%;
   }
 
-  @media only screen and (min-width: 1023px) {
+  @media only screen and (min-width: 1440px) and (max-width: 2499px) {
     margin-top: 50%;
-    width: 30%;
-    height: 50%;
-  }
-
-  @media only screen and (min-width: 1440px) {
-    margin-top: 25%;
-    width: 25%;
-    height: 50%;
+    width: 30% !important;
+    min-height: 30%;
   }
 
   @media only screen and (min-width: 2500px) {
-    margin-top: 25%;
+    margin-top: 30%;
     width: 20%;
-    height: 30%;
+    min-height: 30%;
   }
 `;
 

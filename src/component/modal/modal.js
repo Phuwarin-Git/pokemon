@@ -34,6 +34,7 @@ const CardModal = ({ pic, weight, height, name }) => {
             <Details src={pic} />
             <p>Weight : {weight}</p>
             <p>Height : {height}</p>
+            <br />
           </center>
         </div>
       </StyleModal>
