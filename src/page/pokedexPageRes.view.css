@@ -1,0 +1,114 @@
+@media only screen and (max-width: 416px) {
+  .tableResponsive {
+    table-layout: fixed;
+    width: 370px !important;
+    font-size: 15px;
+  }
+  .paging {
+    font-size: 10px;
+    width: 31px;
+    margin-left: auto;
+  }
+
+  .butRes {
+    margin-left: -10px !important;
+    background-color: lightcoral !important;
+  }
+
+  .modalRes {
+    margin-left: 65px;
+    background-color: #fefefe;
+    border-radius: 20px;
+    margin-top: 30%;
+    width: 280px;
+    height: 400px;
+  }
+}
+@media only screen and (min-width: 417px) {
+  .tableResponsive {
+    table-layout: fixed;
+    width: 400px;
+    font-size: 15px;
+  }
+  .paging {
+    font-size: 10px;
+    width: 31px;
+    margin-left: auto;
+  }
+
+  .modalRes {
+    margin-left: 65px;
+    background-color: #fefefe;
+    border-radius: 20px;
+    margin-top: 30%;
+    width: 280px;
+    height: 400px;
+  }
+}
+
+@media (min-width: 767px) {
+  .tableResponsive {
+    font-size: 80%;
+    width: 90% !important;
+  }
+
+  .paging {
+    font-size: 100%;
+    width: 100%;
+  }
+
+  .modalRes {
+    margin-left: 30%;
+    background-color: #fefefe;
+    border-radius: 20px;
+    margin-top: 30%;
+    width: 40%;
+    height: 400px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tableResponsive {
+    font-size: 30px;
+    font-weight: bold;
+    width: 90% !important;
+  }
+  th {
+    color: white;
+  }
+  .paging {
+    font-size: 100%;
+    width: 20%;
+  }
+  .modalRes {
+    margin-left: 30%;
+    background-color: #fefefe;
+    border-radius: 20px;
+    margin-top: 10%;
+    width: 40%;
+    height: 400px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .tableResponsive {
+    font-size: 30px;
+    font-weight: bold;
+    width: 90%;
+  }
+  th {
+    color: white;
+  }
+  .paging {
+    font-size: 100%;
+    width: 20%;
+  }
+  .modalRes {
+    margin-left: 35%;
+    background-color: #fefefe;
+    border-radius: 20px;
+    margin-top: 50%;
+    width: 30%;
+    height: 400px;
+  }
+}
