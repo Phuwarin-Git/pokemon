@@ -23,7 +23,7 @@ const StyleModal = styled(Modal)`
   }
 
   @media only screen and (min-width: 1440px) and (max-width: 2499px) {
-    margin-top: 50%;
+    margin-top: 20%;
     width: 30% !important;
     min-height: 30%;
   }
